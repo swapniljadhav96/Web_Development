@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            margin: 0;
+        }
+
+        .todo-container {
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 85px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        li span {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .edit-button,
+        .delete-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+        }
+
+        .addTask {
+            background-color: #afec21;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div ng-app="todoApp" ng-controller="todoController" class="todo-container">
+
+        <h2>Todo List</h2>
+
+        <input type="text" ng-model="task">
+        <button ng-click="addTask()" class="addTask">Add Task</button>
+
+
+        <ol>
+            <li ng-repeat="t in tasks">
+                <span ng-hide="t.isEditing">{{t.text}}</span>
+                <input ng-show="t.isEditing" type="text" ng-model="t.text">
+                <button class="edit-button" ng-click="editTask(t)">Edit</button>
+                <button class="delete-button" ng-click="deleteTask($index)">Delete</button>
+            </li>
+        </ol>
+
+    </div>
+
+    <script>
+        var app = angular.module('todoApp', []);
+        app.controller('todoController', function ($scope) {
+            $scope.tasks = [];
+
+            $scope.addTask = function () {
+                if ($scope.task) {
+                    $scope.tasks.push({ text: $scope.task, isEditing: false });
+                    $scope.task = '';
+                }
+            };
+
+            $scope.deleteTask = function (index) {
+                $scope.tasks.splice(index, 1);
+            };
+
+            $scope.editTask = function (task) {
+                task.isEditing = !task.isEditing;
+            };
+        });
+    </script>
+
+</body>
+
+</html>
