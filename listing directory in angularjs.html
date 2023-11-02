@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page </title>
+</head>
+
+<body>
+    <form>
+        <label for="fname">First Name:</label><br>
+        <input type="text" id="fname"> </input>
+        <br>
+        <label for="email">Email address:</label><br>
+        <input type="text" id="mail"> </input>
+
+        <button onclick="myFunction()">Submit</button>
+    </form>
+    <p id="p1">This is para </p>
+    <script>
+        function myFunction() {
+
+
+            var mail = document.getElementById("mail").value;
+
+            var name = document.getElementById("fname").value;
+            var t = /[a-z]+[@][a-z]+[.][a-z]+$/;
+            var t1 = /^[a-zA-Z]+$/;
+            if (t1.test(name)) {
+                alert("Hello Miss Dipika pass");
+            }
+            else {
+                alert("Hello Miss Dipika  fail");
+            }
+            // if(t.test(mail))
+            // {
+            //     alert("Hello Miss Dipika pass" );
+            // }
+            // else
+            // {
+            //     alert("Hello Miss Dipika  fail" );
+            // }
+
+        }
+    </script>
+</body>
+
+</html>
