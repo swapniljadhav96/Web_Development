@@ -154,3 +154,22 @@
 </script>
 
 </html>
+
+function myfun() {
+    let t = document.getElementById("name").value;
+    let p = document.getElementById("email").value;
+    let q = document.getElementById("mob").value;
+    let r = document.getElementById("gen").value;
+    let s = document.getElementById("add").value;
+
+    let n = /^[a-z]+[0-9]+[@]+[a-z]+[.]+[a-z]+$/;
+    let m = /^[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+$/;
+    let l = /^[+91][0-9]{12}$/;
+    let a = /^["male"]*["female"]*["other"]+$/;
+    let b = /^[a-z]+$/
+    if (m.test(t) && n.test(p) && l.test(q) && a.test(r) && b.test(s)) {
+        alert("pass");
+    } else {
+        alert("failed");
+    }   
+}
