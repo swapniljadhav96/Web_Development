@@ -52,25 +52,31 @@
 <body>
     <div class="cent">
         <h1 style="margin: 20px;;">Form Validation by Using js!</h1>
-        <form aciton="/myaction.php" name="myForm" onsubmit="altfun()" method="post">
+
+        <form name="myForm" onsubmit="myfun()">
+
             <div class="formdesign" id="name">
-                Name: <input type="text" name="fname" required><b><span class="formerror"> </span></b>
+                Name: <input type="text" name="fname" required>
             </div>
 
             <div class="formdesign" id="email">
-                Email: <input type="email" name="femail" required><b><span class="formerror"> </span></b>
+                Email: <input type="email" name="femail" required>
             </div>
 
             <div class="formdesign" id="phone">
-                Phone: <input type="phone" name="fphone" required><b><span class="formerror"></span></b>
+                Phone: <input type="phone" name="fphone" required>
             </div>
 
             <div class="formdesign" id="pass">
-                Password: <input type="password" name="fpass" required><b><span class="formerror" </span></b>
+                Password: <input type="password" name="fpass" required>
             </div>
 
-            <div class="formdesign" id="cpass">
-                Confirm Password: <input type="password" name="fcpass" required><b><span class="formerror"></span></b>
+            <div class="formdesign" id="gen">
+                Gender: <input type="text" id="fgen" required>
+            </div>
+            
+            <div class="formdesign" id="add">
+                Address: <input type="text" name="fadd" required>
             </div>
 
             <input class="but" type="submit" value="Submit" style="background-color: red;">
@@ -80,96 +86,30 @@
     </div>
 
 </body>
+
 <script>
-    function clearErrors() {
+    function myfun() {
+        let t = document.getElementById("fname").value;
+        let p = document.getElementById("femail").value;
+        let q = document.getElementById("fphone").value;
+        let r = document.getElementById("fpass").value;
+        let s = document.getElementById("fcgen").value;
+        let U = document.getElementById("fadd").value;
 
-        errors = document.getElementsByClassName('formerror');
-        for (let item of errors) {
-            item.innerHTML = "";
+        let n = /^[a-z]+[0-9]+[@]+[a-z]+[.]+[a-z]+$/;
+        let m = /^[A-Z][a-z]+ [A-Z][a-z]+$/;
+        let l = /^[0-9]{10}$/;
+        let c = /^[0-9]{6}$/;
+        let a = /^["male"]*["female"]*["other"]+$/;
+        let b = /^[a-b]$/
+
+        if (m.test(t) && n.test(p) && l.test(q) && c.test(r) && a.test(s) && b.test(u)) {
+            alert("pass");
         }
-
-
+        else {
+            alert("failed");
+        }
     }
-    function seterror(id, error) {
-        //sets error inside tag of id 
-        element = document.getElementById(id);
-        element.getElementsByClassName('formerror')[0].innerHTML = error;
-
-    }
-
-    function altfun() {
-        alert("Your Form is submitted Succefully");
-
-        //perform validation and if validation fails, set the value of returnval to false
-        var name = document.forms['myForm']["fname"].value;
-        if (name.length < 5) {
-            seterror("name", "*Length of name is too short");
-            returnval = false;
-        }
-
-        if (name.length == 0) {
-            seterror("name", "*Length of name cannot be zero!");
-            returnval = false;
-        }
-
-        function validate() {
-
-            var user = document.getElementById("e").value;
-            var user2 = document.getElementById("e");
-            var re = /^[a-z0-9]+[@][a-z]+[\.][a-z]+$/;
-            if (re.test(user)) {
-                alert("done");
-                return true;
-            }
-            else {
-                user2.style.border = "red solid 3px";
-                return false;
-            }
-        }
-
-        var phone = document.forms['myForm']["fphone"].value;
-        if (phone.length != 10) {
-            seterror("phone", "*Phone number should be of 10 digits!");
-            returnval = false;
-        }
-
-        var password = document.forms['myForm']["fpass"].value;
-        if (password.length < 6) {
-
-            // Quiz: create a logic to allow only those passwords which contain atleast one letter, 
-            // one number and one special character and one uppercase letter
-            seterror("pass", "*Password should be atleast 6 characters long!");
-            returnval = false;
-        }
-
-        var cpassword = document.forms['myForm']["fcpass"].value;
-        if (cpassword != password) {
-            seterror("cpass", "*Password and Confirm password should match!");
-            returnval = false;
-        }
-
-        return returnval;
-    }
-
 </script>
 
 </html>
-
-function myfun() {
-    let t = document.getElementById("name").value;
-    let p = document.getElementById("email").value;
-    let q = document.getElementById("mob").value;
-    let r = document.getElementById("gen").value;
-    let s = document.getElementById("add").value;
-
-    let n = /^[a-z]+[0-9]+[@]+[a-z]+[.]+[a-z]+$/;
-    let m = /^[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+$/;
-    let l = /^[+91][0-9]{12}$/;
-    let a = /^["male"]*["female"]*["other"]+$/;
-    let b = /^[a-z]+$/
-    if (m.test(t) && n.test(p) && l.test(q) && a.test(r) && b.test(s)) {
-        alert("pass");
-    } else {
-        alert("failed");
-    }   
-}
