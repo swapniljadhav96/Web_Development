@@ -121,3 +121,69 @@
 </body>
 
 </html>
+
+#=======OR============================================================================================================================
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0 ">
+	<title>To-Do List</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script type="text/javascript" src="Ass1.js"></script>
+</head>
+
+<body ng-controller="myController">
+	<h1 style="background-color: grey" align="center"> DAILY TASKS</h1>
+	<table align="center" cellspacing="1" border="1">
+		<tr>
+			<th>SR.NO</th>
+			<th>TASKS</th>
+			<th colspan=2>Actions</th>
+		</tr>
+		<tr ng-repeat="obj in o">
+			<td ng-repeat="(key,value) in obj">{{value}}</td>
+			<td><input type="button" value="Delete" ng-click="Delete(obj.id)"></td>
+			<td><input type="button" value="Update" ng-click="Update(obj.id)"></td>
+		</tr>
+	</table>
+	Enter the task number:<br>
+	<input type="text" ng-model="id1"><br><br>
+	Enter the task:<br>
+	<input type="text" ng-model="name1"><br><br>
+	<input type="button" value="Add a new task" ng-click="add()">
+</body>
+
+</html>
+
+#===JS file======================================================================
+
+let x = angular.module('myModule', [])
+let y = x.controller('myController', function ($scope) {
+	$scope.o = [{ id: 1, name: "Wake-up" }]
+	$scope.add = function () {
+		$scope.o.push({
+			id: $scope.id1,
+			name: $scope.name1
+		});
+
+	}
+	$scope.Delete = function (id1) {
+		$scope.o = $scope.o.filter(function (e) {
+			return e.id != id1;
+		});
+	}
+	$scope.Update = function (id1) {
+		let naam = prompt("Enter the updated task:");
+		$scope.o.forEach(function (element) {
+			if (element.id == id1) {
+				element.name = naam;
+			}
+		});
+	}
+
+
+
+});
